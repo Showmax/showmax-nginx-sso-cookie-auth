@@ -1,0 +1,5 @@
+showmax-nginx-sso-cookie-auth (0.0.1) unstable; urgency=medium
+
+  * Initial release
+
+ -- Andrew Lewis <andrew.lewis@showmax.com>  Fri, 04 Dec 2015 14:24:53 +0200
