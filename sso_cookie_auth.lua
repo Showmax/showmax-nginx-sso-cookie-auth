@@ -31,6 +31,13 @@ function uri_args_string (args)
     return string.sub(String, 1, string.len(String) - 1)
 end
 
+local sso_url = "https://sso.showmax.cc"
+
+local sso_domain_match = ngx.re.match(ngx.var.host, "showmax.(cc|io|com)")
+if sso_domain_match then
+  sso_url = "https://sso." .. sso_domain_match[0]
+end
+
 local back_url = ngx.var.scheme .. "://" .. ngx.var.host .. ngx.var.uri .. uri_args_string()
-return ngx.redirect("https://sso.showmax.cc/".."?r=".. ngx.escape_uri(ngx.encode_base64(back_url)))
+return ngx.redirect(sso_url .. "/?r=".. ngx.escape_uri(ngx.encode_base64(back_url)))
 
