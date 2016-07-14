@@ -1,3 +1,9 @@
+showmax-nginx-sso-cookie-auth (0.0.3) unstable; urgency=medium
+
+  * Set encryption key based on Host (T9784)
+
+ -- Antonin Kral <antonin.kral@showmax.com>  Thu, 14 Jul 2016 15:56:32 +0200
+
 showmax-nginx-sso-cookie-auth (0.0.2) unstable; urgency=medium
 
   * Guess sso service address from Host (T9784)

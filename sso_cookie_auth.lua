@@ -1,7 +1,20 @@
 local cookie = ngx.unescape_uri(ngx.var.cookie_showmaxAuth)
 local hmac = ""
 local timestamp = ""
-local key = "ce6chah6ongei2Soo1tiekeez4ohlu8aequeexie6oghoh0jietoosha8jeirith"
+
+local keys = {}
+keys["cc"]  = "ce6chah6ongei2Soo1tiekeez4ohlu8aequeexie6oghoh0jietoosha8jeirith"
+keys["io"]  = "ooghahPheraiYesozaPae1shuo7eezoabuafahvaicaveeW7aiTei2Haewahvaic"
+keys["com"] = "aicoh5eethoovieD9eiXie0oY0loomaerueL5Pae5Eayilai5aeQu2IYahx6jifu"
+
+local key = ""
+local sso_url = ""
+
+local sso_domain_match = ngx.re.match(ngx.var.host, "showmax.(cc|io|com)")
+if sso_domain_match then
+  sso_url = "https://sso." .. sso_domain_match[0]
+  key = keys[sso_domain_match[1]]
+end
 
 -- Check existence of cookie
 if cookie ~= nil and cookie:find(":") ~= nil then
@@ -29,13 +42,6 @@ function uri_args_string (args)
         String = String..tostring(k).."="..tostring(v).."&"
     end
     return string.sub(String, 1, string.len(String) - 1)
-end
-
-local sso_url = "https://sso.showmax.cc"
-
-local sso_domain_match = ngx.re.match(ngx.var.host, "showmax.(cc|io|com)")
-if sso_domain_match then
-  sso_url = "https://sso." .. sso_domain_match[0]
 end
 
 local back_url = ngx.var.scheme .. "://" .. ngx.var.host .. ngx.var.uri .. uri_args_string()
