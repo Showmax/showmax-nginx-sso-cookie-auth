@@ -18,7 +18,7 @@ else
   ngx.log(ngx.ERROR, "Unknown SSO domain: " .. ngx.var.host)
   ngx.status = ngx.HTTP_INTERNAL_SERVER_ERROR
   ngx.say("500 - Server misconfigured - see error log")
-  return ngx.exit(ngx.HTTP_OK)
+  return ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
 end
 
 -- Check existence of cookie
