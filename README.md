@@ -1,6 +1,6 @@
 # ShowMax SSO cookie nginx module
 
-This is a LUA module for `nginx` which will verify authentication cookie presented in requests. If cookie is missing or is invalid, it will send a redirect to SSO (single-sign-on) service.
+This is a LUA module for `nginx` which will verify authentication cookie presented in requests. If cookie is missing or is invalid, it will send a redirect to SSO (single-sign-on) service. It is available as Debian package in our repository as `showmax-nginx-sso-cookie-auth`.
 
 It caters for domain it is running, so no configuration is necessary. Use is thus super simple, this is example of grafana service:
 ```
