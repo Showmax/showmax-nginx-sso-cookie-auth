@@ -20,3 +20,11 @@ So adding
 		access_by_lua_file /opt/showmax/nginx-sso-cookie-auth/sso_cookie_auth.lua;
 ```
 to your location configuration should be enough to get you protected (+ you have to install this package).
+
+## Overriding return host
+
+Return URL is normally taken from `nginx` and you don't need to care about it. Sometimes you need to able to override it. Especially when you are behind other proxy. You can do it with
+
+```
+           set $sso_return_url 'https://kibana.showmax.cc';
+```

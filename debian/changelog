@@ -1,3 +1,9 @@
+showmax-nginx-sso-cookie-auth (0.0.4) unstable; urgency=medium
+
+  * Allow overriding prefix of return url (T10408)
+
+ -- Antonin Kral <antonin.kral@showmax.com>  Thu, 28 Jul 2016 10:13:46 +0200
+
 showmax-nginx-sso-cookie-auth (0.0.3) unstable; urgency=medium
 
   * Set encryption key based on Host (T9784)

@@ -49,6 +49,11 @@ function uri_args_string (args)
     return string.sub(String, 1, string.len(String) - 1)
 end
 
-local back_url = ngx.var.scheme .. "://" .. ngx.var.host .. ngx.var.uri .. uri_args_string()
+local back_url = ngx.var.scheme .. "://" .. ngx.var.host
+if ngx.var.sso_return_url ~= nil then
+ back_url = ngx.var.sso_return_url
+end
+back_url = back_url .. ngx.var.uri .. uri_args_string()
+
 return ngx.redirect(sso_url .. "/?r=".. ngx.escape_uri(ngx.encode_base64(back_url)))
 
