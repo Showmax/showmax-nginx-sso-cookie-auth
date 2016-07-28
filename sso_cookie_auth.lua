@@ -15,7 +15,7 @@ if sso_domain_match then
   sso_url = "https://sso." .. sso_domain_match[0]
   key = keys[sso_domain_match[1]]
 else
-  ngx.log(ngx.ERROR, "Unknown SSO domain: " .. ngx.var.host)
+  ngx.log(ngx.ERR, "Unknown SSO domain: " .. ngx.var.host)
   ngx.status = ngx.HTTP_INTERNAL_SERVER_ERROR
   ngx.say("500 - Server misconfigured - see error log")
   return ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)

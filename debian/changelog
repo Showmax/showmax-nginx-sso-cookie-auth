@@ -1,3 +1,9 @@
+showmax-nginx-sso-cookie-auth (0.0.5) unstable; urgency=medium
+
+  * Logging of incorrect SSO domain (T10429)
+
+ -- Antonin Kral <bobek@bob.bobek.cz>  Thu, 28 Jul 2016 12:25:27 +0200
+
 showmax-nginx-sso-cookie-auth (0.0.4) unstable; urgency=medium
 
   * Allow overriding prefix of return url (T10408)
