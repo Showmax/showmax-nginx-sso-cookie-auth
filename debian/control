@@ -9,5 +9,5 @@ Vcs-Browser: https://git.showmax.cc/ops/nginx-sso-cookie-auth
 
 Package: showmax-nginx-sso-cookie-auth
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Monitoring system and time series database
+Depends: ${shlibs:Depends}, ${misc:Depends}, lua-cjson
+Description: nginx LUA module for ShowMax SSO cookie verification

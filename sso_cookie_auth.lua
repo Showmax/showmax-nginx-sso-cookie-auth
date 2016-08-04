@@ -1,3 +1,5 @@
+local cjson  = require 'cjson'
+
 local cookie = ngx.unescape_uri(ngx.var.cookie_showmaxAuth)
 local hmac = ""
 local timestamp = ""
