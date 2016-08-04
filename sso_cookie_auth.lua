@@ -1,6 +1,7 @@
 local cjson  = require 'cjson'
 
-local cookie = ngx.unescape_uri(ngx.var.cookie_showmaxAuth)
+local cookie_auth_data = ngx.unescape_uri(ngx.var.cookie_showmaxAuthData)
+local cookie_auth_sign = ngx.unescape_uri(ngx.var.cookie_showmaxAuthSign)
 local hmac = ""
 local timestamp = ""
 
@@ -23,21 +24,23 @@ else
   return ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
 end
 
--- Check existence of cookie
-if cookie ~= nil and cookie:find(":") ~= nil then
-    -- Cookie format is expiration:signature
-    local divider = cookie:find(":")
-    timestamp = cookie:sub(0, divider-1)
-    hmac_sign = cookie:sub(divider+1)
-
-    local sign = (hmac_sign:gsub("..", function (cc)
+-- Verify signature
+if cookie_auth_data ~= nil and cookie_auth_sign ~= nil then
+    local sign = (cookie_auth_sign:gsub("..", function (cc)
                     return string.char(tonumber(cc, 16))
                   end))
 
-    if ngx.hmac_sha1(key, timestamp) == sign and tonumber(timestamp) >= ngx.time() then
-      return
+    if ngx.hmac_sha1(key, cookie_auth_data) == sign then
+      local auth_data = cjson.decode(ngx.decode_base64(cookie_auth_data))
+      -- Verify validity of signature
+      if tonumber(auth_data['exp']) >= ngx.time() then
+        return
+      end
     end
 end
+
+-- Being here means, that your signature was invalid/expired/missing
+-- and you should be redirected to SSO
 
 -- Convert a table of arguments to an URI string
 function uri_args_string (args)

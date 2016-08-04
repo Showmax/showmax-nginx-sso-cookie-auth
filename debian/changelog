@@ -1,8 +1,15 @@
+showmax-nginx-sso-cookie-auth (0.0.6) unstable; urgency=medium
+
+  * Added dependency on lua-cjson
+  * Switch to authData and authSign (T9675)
+
+ -- Antonin Kral <antonin.kral@showmax.com>  Thu, 04 Aug 2016 09:36:53 +0200
+
 showmax-nginx-sso-cookie-auth (0.0.5) unstable; urgency=medium
 
   * Logging of incorrect SSO domain (T10429)
 
- -- Antonin Kral <bobek@bob.bobek.cz>  Thu, 28 Jul 2016 12:25:27 +0200
+ -- Antonin Kral <antonin.kral@showmax.com>  Thu, 28 Jul 2016 12:25:27 +0200
 
 showmax-nginx-sso-cookie-auth (0.0.4) unstable; urgency=medium
 
