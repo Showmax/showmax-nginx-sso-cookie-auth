@@ -28,3 +28,10 @@ Return URL is normally taken from `nginx` and you don't need to care about it. S
 ```
            set $sso_return_url 'https://kibana.showmax.cc';
 ```
+
+## Authentication data
+We are now passing authentication cookie `Showmax-Auth-Data` which contains JSON with additional data. You can find description of the fields in https://git.showmax.cc/ops/ops-sso project. Some of data are copied for convenience into request headers. Those are:
+
+  * `X-Forwarded-User` == `uid`
+  * `showmax-int-Auth-Uid` == `uid`
+

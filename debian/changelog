@@ -1,3 +1,9 @@
+showmax-nginx-sso-cookie-auth (0.0.7) unstable; urgency=medium
+
+  * Copy uid to headers (T10659)
+
+ -- Antonin Kral <antonin.kral@showmax.com>  Fri, 05 Aug 2016 10:09:54 +0200
+
 showmax-nginx-sso-cookie-auth (0.0.6) unstable; urgency=medium
 
   * Added dependency on lua-cjson

@@ -34,6 +34,8 @@ if cookie_auth_data ~= nil and cookie_auth_sign ~= nil then
       local auth_data = cjson.decode(ngx.decode_base64(cookie_auth_data))
       -- Verify validity of signature
       if tonumber(auth_data['exp']) >= ngx.time() then
+        ngx.req.set_header("X-Forwarded-User", auth_data['uid'])
+        ngx.req.set_header("showmax-int-Auth-Uid", auth_data['uid'])
         return
       end
     end
