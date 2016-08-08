@@ -1,3 +1,9 @@
+showmax-nginx-sso-cookie-auth (0.0.8) unstable; urgency=medium
+
+  * Do not try include uid if null (T10687)
+
+ -- Antonin Kral <antonin.kral@showmax.com>  Mon, 08 Aug 2016 07:01:34 +0200
+
 showmax-nginx-sso-cookie-auth (0.0.7) unstable; urgency=medium
 
   * Copy uid to headers (T10659)
