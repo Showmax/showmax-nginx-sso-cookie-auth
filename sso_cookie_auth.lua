@@ -59,7 +59,7 @@ function uri_args_string (args)
 end
 
 local back_url = ngx.var.scheme .. "://" .. ngx.var.host
-if ngx.var.sso_return_url ~= nil then
+if ngx.var.sso_return_url ~= nil and ngx.var.sso_return_url ~= '' then
  back_url = ngx.var.sso_return_url
 end
 back_url = back_url .. ngx.var.uri .. uri_args_string()
