@@ -29,6 +29,32 @@ Return URL is normally taken from `nginx` and you don't need to care about it. S
            set $sso_return_url 'https://kibana.showmax.cc';
 ```
 
+## Require certain audience
+
+Part of the authentication data is also audience. For list of values, please check the [SSO project](https://git.showmax.cc/ops/ops-sso).
+
+```
+           set $sso_allowed_audience 'showmax';
+```
+
+Will require to have ShowMax account to get access. You don't need to specify this though as it is default value. So you don't need to change anything in your configuration if it is in front of internal service.
+
+If you don't care for audience (aka looking for valid account only) use ``any`` as value:
+
+```
+           set $sso_allowed_audience 'any';
+```
+
+You can also specify multiple values. They are treated as having **OR** between then. So for example
+
+```
+           set $sso_allowed_audience 'showmax, recombee';
+```
+
+Will give access to account which is either in ``showmax``, or in ``recombee`` or both (first match will win anyway).
+
+Note: I was thinking (and initially implemented AND option). But it turned out, that OR would be more useful, at least for now. We can add it later with e.g. ``sso_required_audience`` option.
+
 ## Authentication data
 We are now passing authentication cookie `Showmax-Auth-Data` which contains JSON with additional data. You can find description of the fields in https://git.showmax.cc/ops/ops-sso project. Some of data are copied for convenience into request headers. Those are:
 

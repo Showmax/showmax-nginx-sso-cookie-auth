@@ -24,6 +24,16 @@ else
   return ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
 end
 
+function validate_allowed_audience(allowed_audiences, present_audiences)
+  if allowed_audiences == '' then return true end
+  for allowed_audience in string.gmatch(allowed_audiences, '([^, ]+)') do
+    for _, audience in ipairs(present_audiences) do
+      if allowed_audience == audience then return true end
+    end
+  end
+  return false
+end
+
 -- Verify signature
 if cookie_auth_data ~= nil and cookie_auth_sign ~= nil then
     local sign = (cookie_auth_sign:gsub("..", function (cc)
@@ -37,6 +47,24 @@ if cookie_auth_data ~= nil and cookie_auth_sign ~= nil then
         if auth_data['uid'] ~= cjson.null then
           ngx.req.set_header("X-Forwarded-User", auth_data['uid'])
           ngx.req.set_header("showmax-int-Auth-Uid", auth_data['uid'])
+        end
+
+        -- Sanitize required audience
+        sso_allowed_audience = 'showmax'
+        if ngx.var.sso_allowed_audience ~= nil and ngx.var.sso_allowed_audience ~= '' then
+          if ngx.var.sso_allowed_audience == 'any' then
+            sso_allowed_audience = ''
+          else
+            sso_allowed_audience = ngx.var.sso_allowed_audience
+          end
+        end
+
+        -- Verify if the user has appropriate audience
+        if not validate_allowed_audience(sso_allowed_audience, auth_data['aud']) then
+          ngx.log(ngx.ERR, "User " .. auth_data['uid'] .. "doesn't have any of allowed audiences.")
+          ngx.status = ngx.HTTP_FORBIDDEN
+          ngx.say("403 - You dont't posses any of allowed audiences")
+          return ngx.exit(ngx.HTTP_FORBIDDEN)
         end
 
         -- We have validated auth cookie and passing the request

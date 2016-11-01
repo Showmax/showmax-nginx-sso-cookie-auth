@@ -1,3 +1,9 @@
+showmax-nginx-sso-cookie-auth (0.0.10) unstable; urgency=medium
+
+  * Support for allowed_audiences (T10650)
+
+ -- Antonin Kral <antonin.kral@showmax.com>  Tue, 01 Nov 2016 12:43:58 +0100
+
 showmax-nginx-sso-cookie-auth (0.0.9) unstable; urgency=medium
 
   * Test for empty sso_return_url (T13423)
