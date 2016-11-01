@@ -38,6 +38,8 @@ if cookie_auth_data ~= nil and cookie_auth_sign ~= nil then
           ngx.req.set_header("X-Forwarded-User", auth_data['uid'])
           ngx.req.set_header("showmax-int-Auth-Uid", auth_data['uid'])
         end
+
+        -- We have validated auth cookie and passing the request
         return
       end
     end
