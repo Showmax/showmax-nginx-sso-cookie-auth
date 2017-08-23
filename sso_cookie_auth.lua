@@ -24,7 +24,7 @@ else
   return ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
 end
 
-function validate_allowed_audience(allowed_audiences, present_audiences)
+local function validate_allowed_audience(allowed_audiences, present_audiences)
   if allowed_audiences == '' then return true end
   for allowed_audience in string.gmatch(allowed_audiences, '([^, ]+)') do
     for _, audience in ipairs(present_audiences) do
@@ -77,7 +77,7 @@ end
 -- and you should be redirected to SSO
 
 -- Convert a table of arguments to an URI string
-function uri_args_string (args)
+local function uri_args_string (args)
     if not args then
         args = ngx.req.get_uri_args()
     end
