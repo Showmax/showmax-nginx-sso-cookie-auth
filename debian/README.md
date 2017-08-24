@@ -7,3 +7,5 @@ We are also using `git-buildpackage` for managing the build process. Good source
 The basic workflow is as follows
   - changes which should got to public release are made in `upstream` branch
   - changes specific to Showmax go to `master` branch. If you are touching the files which are also in public release, you **have** to use patch-queue workflow. Check http://honk.sigxcpu.org/projects/git-buildpackage/manual-html/gbp.patches.html for more details.
+
+The actual build is then simple as running `gbp buildpackage`. That will produce a new package under `../build-area/`.
