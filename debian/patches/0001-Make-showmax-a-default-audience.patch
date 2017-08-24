@@ -1,0 +1,29 @@
+From: Antonin Kral <a.kral@bobek.cz>
+Date: Thu, 24 Aug 2017 13:08:29 +0200
+Subject: Make "showmax" a default audience
+
+---
+ sso_cookie_auth.lua | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/sso_cookie_auth.lua b/sso_cookie_auth.lua
+index fe3173b..13535a6 100644
+--- a/sso_cookie_auth.lua
++++ b/sso_cookie_auth.lua
+@@ -7,6 +7,7 @@ local timestamp = ""
+ 
+ local keys = {}
+ 
++
+ local key = ""
+ local sso_url = ""
+ 
+@@ -46,7 +47,7 @@ if cookie_auth_data ~= nil and cookie_auth_sign ~= nil then
+         end
+ 
+         -- Sanitize required audience
+-        sso_allowed_audience = 'nobody'
++        sso_allowed_audience = 'showmax'
+         if ngx.var.sso_allowed_audience ~= nil and ngx.var.sso_allowed_audience ~= '' then
+           if ngx.var.sso_allowed_audience == 'any' then
+             sso_allowed_audience = ''

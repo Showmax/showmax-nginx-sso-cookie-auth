@@ -1,0 +1,22 @@
+From: Antonin Kral <a.kral@bobek.cz>
+Date: Thu, 24 Aug 2017 13:11:31 +0200
+Subject: set auth cookies
+
+---
+ sso_cookie_auth.lua | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/sso_cookie_auth.lua b/sso_cookie_auth.lua
+index dea1371..9d4f712 100644
+--- a/sso_cookie_auth.lua
++++ b/sso_cookie_auth.lua
+@@ -1,7 +1,7 @@
+ local cjson  = require 'cjson'
+ 
+-local cookie_auth_data = ngx.unescape_uri(ngx.var.cookie_FIXME_YOUR_AUTH_DATA_COOKIE)
+-local cookie_auth_sign = ngx.unescape_uri(ngx.var.cookie_FIXME_YOUR_AUTH_SIGN_COOKIE)
++local cookie_auth_data = ngx.unescape_uri(ngx.var.cookie_showmaxAuthData)
++local cookie_auth_sign = ngx.unescape_uri(ngx.var.cookie_showmaxAuthSign)
+ local hmac = ""
+ local timestamp = ""
+ 

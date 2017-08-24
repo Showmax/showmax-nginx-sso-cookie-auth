@@ -1,0 +1,21 @@
+From: Antonin Kral <a.kral@bobek.cz>
+Date: Thu, 24 Aug 2017 13:11:05 +0200
+Subject: Set allowed host regex
+
+---
+ sso_cookie_auth.lua | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sso_cookie_auth.lua b/sso_cookie_auth.lua
+index 3fd8c2c..ac2551f 100644
+--- a/sso_cookie_auth.lua
++++ b/sso_cookie_auth.lua
+@@ -11,7 +11,7 @@ local keys = {}
+ local key = ""
+ local sso_url = ""
+ 
+-local sso_domain_match = ngx.re.match(ngx.var.host, "FIXME_ALLOWED_DOMAINS_REGEX")
++local sso_domain_match = ngx.re.match(ngx.var.host, "showmax.(cc|io|com)")
+ if sso_domain_match then
+   sso_url = "https://sso." .. sso_domain_match[0]
+   key = keys[sso_domain_match[0]]

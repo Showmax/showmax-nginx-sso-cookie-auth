@@ -1,0 +1,23 @@
+From: Antonin Kral <a.kral@bobek.cz>
+Date: Thu, 24 Aug 2017 13:11:09 +0200
+Subject: Set signing keys
+
+---
+ sso_cookie_auth.lua | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/sso_cookie_auth.lua b/sso_cookie_auth.lua
+index ac2551f..dea1371 100644
+--- a/sso_cookie_auth.lua
++++ b/sso_cookie_auth.lua
+@@ -6,7 +6,9 @@ local hmac = ""
+ local timestamp = ""
+ 
+ local keys = {}
+-
++keys["showmax.cc"]  = "ce6chah6ongei2Soo1tiekeez4ohlu8aequeexie6oghoh0jietoosha8jeirith"
++keys["showmax.io"]  = "ooghahPheraiYesozaPae1shuo7eezoabuafahvaicaveeW7aiTei2Haewahvaic"
++keys["showmax.com"] = "aicoh5eethoovieD9eiXie0oY0loomaerueL5Pae5Eayilai5aeQu2IYahx6jifu"
+ 
+ local key = ""
+ local sso_url = ""
