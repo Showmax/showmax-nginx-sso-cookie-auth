@@ -1,7 +1,0 @@
-debian/.debhelper/
-debian/debhelper-build-stamp
-debian/files
-debian/showmax-nginx-sso-cookie-auth.debhelper.log
-debian/showmax-nginx-sso-cookie-auth.substvars
-debian/showmax-nginx-sso-cookie-auth/
-

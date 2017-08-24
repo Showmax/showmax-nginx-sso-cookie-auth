@@ -1,22 +1,19 @@
 local cjson  = require 'cjson'
 
-local cookie_auth_data = ngx.unescape_uri(ngx.var.cookie_showmaxAuthData)
-local cookie_auth_sign = ngx.unescape_uri(ngx.var.cookie_showmaxAuthSign)
+local cookie_auth_data = ngx.unescape_uri(ngx.var.cookie_FIXME_YOUR_AUTH_DATA_COOKIE)
+local cookie_auth_sign = ngx.unescape_uri(ngx.var.cookie_FIXME_YOUR_AUTH_SIGN_COOKIE)
 local hmac = ""
 local timestamp = ""
 
 local keys = {}
-keys["cc"]  = "ce6chah6ongei2Soo1tiekeez4ohlu8aequeexie6oghoh0jietoosha8jeirith"
-keys["io"]  = "ooghahPheraiYesozaPae1shuo7eezoabuafahvaicaveeW7aiTei2Haewahvaic"
-keys["com"] = "aicoh5eethoovieD9eiXie0oY0loomaerueL5Pae5Eayilai5aeQu2IYahx6jifu"
 
 local key = ""
 local sso_url = ""
 
-local sso_domain_match = ngx.re.match(ngx.var.host, "showmax.(cc|io|com)")
+local sso_domain_match = ngx.re.match(ngx.var.host, "FIXME_ALLOWED_DOMAINS_REGEX")
 if sso_domain_match then
   sso_url = "https://sso." .. sso_domain_match[0]
-  key = keys[sso_domain_match[1]]
+  key = keys[sso_domain_match[0]]
 else
   ngx.log(ngx.ERR, "Unknown SSO domain: " .. ngx.var.host)
   ngx.status = ngx.HTTP_INTERNAL_SERVER_ERROR
@@ -46,11 +43,10 @@ if cookie_auth_data ~= nil and cookie_auth_sign ~= nil then
       if tonumber(auth_data['exp']) >= ngx.time() then
         if auth_data['uid'] ~= cjson.null then
           ngx.req.set_header("X-Forwarded-User", auth_data['uid'])
-          ngx.req.set_header("showmax-int-Auth-Uid", auth_data['uid'])
         end
 
         -- Sanitize required audience
-        sso_allowed_audience = 'showmax'
+        sso_allowed_audience = 'nobody'
         if ngx.var.sso_allowed_audience ~= nil and ngx.var.sso_allowed_audience ~= '' then
           if ngx.var.sso_allowed_audience == 'any' then
             sso_allowed_audience = ''
