@@ -17,7 +17,6 @@ if sso_domain_match then
 else
   ngx.log(ngx.ERR, "Unknown SSO domain: " .. ngx.var.host)
   ngx.status = ngx.HTTP_INTERNAL_SERVER_ERROR
-  ngx.say("500 - Server misconfiguration - see error log")
   return ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
 end
 
@@ -59,7 +58,6 @@ if cookie_auth_data ~= nil and cookie_auth_sign ~= nil then
         if not validate_allowed_audience(sso_allowed_audience, auth_data['aud']) then
           ngx.log(ngx.ERR, "User " .. auth_data['uid'] .. "doesn't have any of allowed audiences.")
           ngx.status = ngx.HTTP_FORBIDDEN
-          ngx.say("403 - You don't posses any of allowed audiences")
           return ngx.exit(ngx.HTTP_FORBIDDEN)
         end
 
