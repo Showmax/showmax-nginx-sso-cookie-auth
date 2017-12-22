@@ -2,6 +2,11 @@
 
 This is a LUA module for `nginx` which will verify authentication cookie presented in requests. If cookie is missing or is invalid, it will send a redirect to SSO (single-sign-on) service.
 
+## Requirements
+
+Please make sure that your **NGINX** installation contains support for LUA files.
+For example Debian includes LUA in `nginx-extras` package (nginx-light, nginx, nginx-full won't work).
+
 ## Using module inside ``nginx``
 
 It caters for domain it is running, so no configuration is necessary. Use is thus super simple, this is example of grafana service:
