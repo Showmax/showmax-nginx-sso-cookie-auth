@@ -14,7 +14,7 @@ local sso_domain_match = ngx.re.match(ngx.var.host, "FIXME_ALLOWED_DOMAINS_REGEX
 if sso_domain_match then
   sso_url = "https://sso." .. sso_domain_match[0]
   key = keys[sso_domain_match[0]]
-  if key ~= nil then
+  if key == nil then
     ngx.log(ngx.ERR, "Unable to fetch key for: " .. sso_domain_match[0])
     ngx.status = ngx.HTTP_INTERNAL_SERVER_ERROR
     return ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
