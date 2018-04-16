@@ -67,6 +67,7 @@ if cookie_auth_data ~= nil and cookie_auth_sign ~= nil then
         end
 
         -- We have validated auth cookie and passing the request
+        ngx.req.set_header("X-Forwarded-Audiences", auth_data['aud'])
         return
       end
     end

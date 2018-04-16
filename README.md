@@ -66,6 +66,7 @@ Note: I was thinking (and initially implemented AND option). But it turned out, 
 We are now passing authentication cookie `Showmax-Auth-Data` which contains JSON with additional data. You can find description of the fields in https://git.showmax.cc/ops/ops-sso project. Some of data are copied for convenience into request headers. Those are:
 
   * `X-Forwarded-User` == `uid`
+  * `X-Forwarded-Audience` == list of authenticated audience values from SSO
 
 ## Getting module ready
 As you can see, module has multiple configuration options hard-coded. We have decided not to go with external configuration file, as that would tremendously complicate deployment (you would need to set Lua paths etc). Our deployment looks like this:
