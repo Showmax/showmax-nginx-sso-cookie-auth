@@ -44,7 +44,7 @@ Part of the authentication data is also audience. For list of values, please che
            set $sso_allowed_audience 'showmax';
 ```
 
-Will require to have ShowMax account to get access. You don't need to specify this though as it is default value. So you don't need to change anything in your configuration if it is in front of internal service.
+Will require to have Showmax account to get access. You don't need to specify this though as it is default value. So you don't need to change anything in your configuration if it is in front of internal service.
 
 If you don't care for audience (aka looking for valid account only) use ``any`` as value:
 
