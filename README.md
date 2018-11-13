@@ -137,3 +137,8 @@ The actual code, which is setting cookies on our side looks like this (exact cop
 ```
 
 Where ``settings.cookie_domain`` resolves to appropriate domain, such as ``.showmax.cc``. You can also see use of ``session`` object. Which is an encrypted session between SSO server and the client. It contains information such as ``uid`` etc. You can replace this with your database for example. ``settings.cookie_secret`` is the same secret you would set to ``keys`` for this domain (``.showmax.cc`` in this case) in Lua module.
+
+### Images behind SSO
+Placeholder image will be returned for request believed to be requesting an image (based on `Accept` header). We have implemented this as we got quite a lot of confused users, when they have been embedding SSO protected images into their documents.
+
+Placeholder image is an Public Domain [Fire Ball Icon](http://www.publicdomainfiles.com/show_file.php?id=13925212824442).
